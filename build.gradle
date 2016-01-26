@@ -1,3 +1,19 @@
+buildscript {
+    repositories {
+        mavenCentral()
+
+        maven {
+            String tmpDir = System.getProperty("java.io.tmpdir") + File.separator + "localMaven"
+            new File(tmpDir).mkdir()
+            url uri("file://" + tmpDir)
+        }
+    }
+
+    dependencies {
+        classpath group: 'cern.jarrace', name: 'gradle', version: '0.1'
+    }
+}
+
 version 'unspecified'
 
 apply plugin: 'java'
@@ -16,24 +32,16 @@ repositories {
 
 }
 
+apply plugin: 'cern.jarrace.gradle'
+
 dependencies {
     compile group: 'junit', name: 'junit', version: '4.12'
     compile group: 'cern.jarrace', name: 'agent', version: '0.1'
 }
 
-buildscript {
 
-    repositories {
-        mavenCentral()
 
-        maven {
-            String tmpDir = System.getProperty("java.io.tmpdir") + File.separator + "localMaven"
-            new File(tmpDir).mkdir()
-            url uri("file://" + tmpDir)
-        }
-    }
 
-    dependencies {
-        classpath group: 'cern.jarrace', name: 'gradle', version: '0.1'
-    }
+jarrace {
+    host = 'localhost:8080'
 }
