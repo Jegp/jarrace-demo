@@ -32,15 +32,12 @@ repositories {
 
 }
 
-apply plugin: 'cern.jarrace.gradle'
-
 dependencies {
     compile group: 'junit', name: 'junit', version: '4.12'
     compile group: 'cern.jarrace', name: 'agent', version: '0.1'
 }
 
-
-
+apply plugin: 'cern.jarrace.gradle'
 
 jarrace {
     host = 'localhost:8080'
